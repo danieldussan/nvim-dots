@@ -46,7 +46,7 @@ return {
       -- Merge custom sources with the existing ones from lazyvim
       -- NOTE: by default lazyvim already includes the lazydev source, so not adding it here again
       opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
-        default = { "lsp", "path", "snippets", "buffer", "copilot", "dadbod", "emoji", "dictionary", "lazydev" },
+        default = { "lsp", "path", "snippets", "buffer", "dadbod", "emoji", "dictionary", "lazydev" },
         compat = { "supermaven" },
         providers = {
           supermaven = {
@@ -195,16 +195,6 @@ return {
               --   return items
               -- end,
             },
-          },
-          -- Third class citizen mf always talking shit
-          copilot = {
-            name = "copilot",
-            enabled = false,
-            module = "blink-cmp-copilot",
-            kind = "Copilot",
-            min_keyword_length = 6,
-            score_offset = -100, -- the higher the number, the higher the priority
-            async = true,
           },
         },
         -- command line completion, thanks to dpetka2001 in reddit
