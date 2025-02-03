@@ -105,7 +105,7 @@ wk.add({
     icon = " ",
   },
   {
-    "<leader>co",
+    "<leader>tc",
     ":Huefy<CR>",
     desc = "Color Picker",
     icon = " ",
