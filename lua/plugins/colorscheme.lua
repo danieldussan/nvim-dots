@@ -1,67 +1,71 @@
+local colors = {
+  linkarzu_color18 = "#5b4996",
+  linkarzu_color19 = "#21925b",
+  linkarzu_color20 = "#027d95",
+  linkarzu_color21 = "#585c89",
+  linkarzu_color22 = "#0f857c",
+  linkarzu_color23 = "#396592",
+  linkarzu_color04 = "#987afb",
+  linkarzu_color02 = "#37f499",
+  linkarzu_color03 = "#04d1f9",
+  linkarzu_color01 = "#949ae5",
+  linkarzu_color05 = "#19dfcf",
+  linkarzu_color08 = "#5fa9f4",
+  linkarzu_color06 = "#1682ef",
+  linkarzu_color07 = "#1c242f",
+  linkarzu_color09 = "#a5afc2",
+  linkarzu_color10 = "#0D1116",
+  linkarzu_color11 = "#f16c75",
+  linkarzu_color12 = "#f1fc79",
+  linkarzu_color13 = "#314154",
+  linkarzu_color14 = "#ebfafa",
+  linkarzu_color15 = "#013e4a",
+  linkarzu_color16 = "#e9b3fd",
+  linkarzu_color17 = "#141b22",
+  linkarzu_color24 = "#F712FF",
+  linkarzu_color25 = "#232e3b",
+}
 return {
-  {
-    -- Plugin for the Catppuccin color scheme
-    "catppuccin/nvim",
-    name = "catppuccin",
-    lazy = false, -- Load this plugin immediately
-    opts = {
-      transparent_background = true, -- Enable transparent background
-      flavour = "mocha", -- Set the flavor of the color scheme
-    },
-    integrations = {
-      cmp = true, -- Enable integration with nvim-cmp
-      gitsigns = true, -- Enable integration with gitsigns
-      nvimtree = true, -- Enable integration with nvim-tree
-      treesitter = true, -- Enable integration with treesitter
-      notify = false, -- Disable integration with nvim-notify
-      mini = {
-        enabled = true, -- Enable mini plugin integration
-        indentscope_color = "", -- Set indentscope color (empty means default)
-      },
-      -- Additional plugin integrations can be found in the documentation
-    },
-  },
-  {
-    -- Plugin for the Kanagawa color scheme
-    "rebelot/kanagawa.nvim",
-    name = "kanagawa",
-    priority = 1000, -- High priority to ensure it loads early
-    opts = {
-      transparent = true, -- Enable transparent background
-      theme = "dragon", -- Set the theme variant to 'dragon'
-      overrides = function(colors)
-        local theme = colors.theme
-        return {
-          NormalFloat = { bg = "none" }, -- Transparent background for floating windows
-          FloatBorder = { bg = "none" }, -- Transparent background for floating window borders
-          FloatTitle = { bg = "none" }, -- Transparent background for floating window titles
-
-          NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 }, -- Custom colors for dark mode
-
-          LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim }, -- Custom colors for Lazy plugin
-          MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim }, -- Custom colors for Mason plugin
-
-          TelescopeTitle = { fg = theme.ui.special, bold = true }, -- Custom colors for Telescope titles
-          TelescopePromptNormal = { bg = theme.ui.bg_p1 }, -- Custom colors for Telescope prompt
-          TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 }, -- Custom colors for Telescope prompt border
-          TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 }, -- Custom colors for Telescope results
-          TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 }, -- Custom colors for Telescope results border
-          TelescopePreviewNormal = { bg = theme.ui.bg_dim }, -- Custom colors for Telescope preview
-          TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim }, -- Custom colors for Telescope preview border
-
-          Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- Custom colors for popup menu
-          PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 }, -- Custom colors for selected item in popup menu
-          PmenuSbar = { bg = theme.ui.bg_m1 }, -- Custom colors for popup menu scrollbar
-          PmenuThumb = { bg = theme.ui.bg_p2 }, -- Custom colors for popup menu thumb
-        }
-      end,
-    },
-  },
-  -- Plugin for the Rose Pine color scheme
-  { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = true, priority = 1000 },
   {
     -- Plugin for enabling transparency
     "xiyaowong/transparent.nvim",
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      style = "night",
+    },
+  },
+  {
+    "navarasu/onedark.nvim",
+    opts = {
+      style = "deep",
+      transparent = true,
+      term_colors = true,
+      ending_tildes = false,
+      cmp_itemkind_reverse = false,
+
+      -- Options are italic, bold, underline, none and combos 'italic,bold'
+      code_style = {
+        comments = "italic",
+        keywords = "none",
+        functions = "none",
+        strings = "none",
+        variables = "none",
+      },
+
+      lualine = { transparent = true },
+      diagnostics = { darker = true, undercurl = true, background = false },
+      colors = {},
+      highlights = {
+        ["NormalFloat"] = { bg = colors["linkarzu_color10"] },
+        ["FloatBorder"] = { bg = colors["linkarzu_color10"], fg = colors["linkarzu_color18"] },
+        ["FloatTitle"] = { bg = colors["linkarzu_color10"], fg = colors["linkarzu_color24"] },
+        ["TroubleNormal"] = { bg = colors["linkarzu_color10"] },
+      },
+    },
   },
   {
     -- LazyVim configuration

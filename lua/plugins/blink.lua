@@ -36,7 +36,7 @@ return {
         -- Get the current buffer's filetype
         local filetype = vim.bo[0].filetype
         -- Disable for Telescope buffers
-        if filetype == "TelescopePrompt" or filetype == "minifiles" then
+        if filetype == "TelescopePrompt" or filetype == "minifiles" or filetype == "snacks_picker_input" then
           return false
         end
         return true
@@ -46,7 +46,7 @@ return {
       -- Merge custom sources with the existing ones from lazyvim
       -- NOTE: by default lazyvim already includes the lazydev source, so not adding it here again
       opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
-        default = { "lsp", "path", "snippets", "buffer", "dadbod", "emoji", "dictionary", "lazydev" },
+        default = { "lsp", "path", "snippets", "buffer", "emoji", "dictionary", "lazydev" },
         compat = { "supermaven" },
         providers = {
           supermaven = {
@@ -141,13 +141,6 @@ return {
               return items
             end,
           },
-          -- Example on how to configure dadbod found in the main repo
-          -- https://github.com/kristijanhusak/vim-dadbod-completion
-          dadbod = {
-            name = "Dadbod",
-            module = "vim_dadbod_completion.blink",
-            score_offset = 85, -- the higher the number, the higher the priority
-          },
           -- https://github.com/moyiz/blink-emoji.nvim
           emoji = {
             module = "blink-emoji",
@@ -236,6 +229,12 @@ return {
         ghost_text = {
           enabled = true,
         },
+        list = {
+          selection = {
+            preselect = false,
+            auto_insert = false,
+          },
+        },
       }
 
       -- opts.fuzzy = {
@@ -272,7 +271,7 @@ return {
       -- the completion will be accepted
       -- https://cmp.saghen.dev/configuration/keymap.html#default
       opts.keymap = {
-        preset = "default",
+        preset = "enter",
         ["<Tab>"] = { "snippet_forward", "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
@@ -285,7 +284,7 @@ return {
         ["<S-j>"] = { "scroll_documentation_down", "fallback" },
 
         ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-        ["<C-e>"] = { "hide", "fallback" },
+        ["<C-c>"] = { "hide", "fallback" },
       }
 
       return opts

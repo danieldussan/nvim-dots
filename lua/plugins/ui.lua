@@ -1,12 +1,35 @@
 -- This file contains the configuration for various UI-related plugins in Neovim.
-vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = "#c34043", bold = true }) -- color kanagawa dragon red
-local icons = require("lib.icons")
 return {
   -- Plugin: folke/todo-comments.nvim
   -- URL: https://github.com/folke/todo-comments.nvim
   -- Description: Plugin para resaltar y buscar comentarios TODO, FIX, HACK, etc. en tu código.
   -- IMPORTANT: using version "*" to fix a bug
-  { "folke/todo-comments.nvim", version = "*" },
+  {
+    "folke/todo-comments.nvim",
+    optional = true,
+    keys = {
+      {
+        "<leader>st",
+        function()
+          Snacks.picker.todo_comments()
+        end,
+        desc = "Todo",
+      },
+      {
+        "<leader>sT",
+        function()
+          Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } })
+        end,
+        desc = "Todo/Fix/Fixme",
+      },
+    },
+  },
+  {
+    -- Plugin: bufferline.nvim
+    -- URL: https://github.com/akinsho/bufferline.nvim
+    -- Description: A snazzy buffer line (with tabpage integration) for Neovim.
+    "akinsho/bufferline.nvim",
+  },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
@@ -27,33 +50,36 @@ return {
       preset = "classic",
       win = { border = "single" },
     },
+    init = function()
+      -- Set the timeout for key sequences
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300 -- Set the timeout length to 300 milliseconds
+    end,
   },
   -- Plugin: noice.nvim
   -- URL: https://github.com/folke/noice.nvim
   -- Description: A Neovim plugin for enhancing the command-line UI.
   {
     "folke/noice.nvim",
-    config = function()
-      require("noice").setup({
-        cmdline = {
-          view = "cmdline", -- Use the cmdline view for the command-line
-        },
-        presets = {
-          bottom_search = true, -- Enable bottom search view
-          command_palette = true, -- Enable command palette view
-          lsp_doc_border = true, -- Enable LSP documentation border
-        },
-        -- Uncomment the following lines to customize the cmdline popup view
-        -- views = {
-        --   cmdline_popup = {
-        --     filter_options = {},
-        --     win_options = {
-        --       winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-        --     },
-        --   },
-        -- },
-      })
-    end,
+    event = "VeryLazy",
+    opts = {
+      cmdline = {
+        view = "cmdline", -- Use the cmdline view for the command-line
+      },
+      presets = {
+        bottom_search = true, -- Enable bottom search view
+        command_palette = true, -- Enable command palette view
+        lsp_doc_border = true, -- Enable LSP documentation border
+      },
+      notify = {
+        -- Noice can be used as `vim.notify` so you can route any notification like other messages
+        -- Notification messages have their level and other properties set.
+        -- event is always "notify" and kind can be any log level as a string
+        -- The default routes will forward notifications to nvim-notify
+        -- Benefit of using Noice for this is the routing and consistent history view
+        enabled = true,
+      },
+    },
   },
 
   -- Plugin: nvim-docs-view

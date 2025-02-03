@@ -13,22 +13,22 @@ end
 -- Prepend the lazy.nvim path to the runtime path
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
--- Fix copy and paste in WSL (Windows Subsystem for Linux)
-if vim.fn.has("wsl") == 1 then
-  vim.g.clipboard = {
-    name = "win32yank", -- Use win32yank for clipboard operations
-    copy = {
-      ["+"] = "win32yank.exe -i --crlf", -- Command to copy to the system clipboard
-      ["*"] = "win32yank.exe -i --crlf", -- Command to copy to the primary clipboard
-    },
-    paste = {
-      ["+"] = "win32yank.exe -o --lf", -- Command to paste from the system clipboard
-      ["*"] = "win32yank.exe -o --lf", -- Command to paste from the primary clipboard
-    },
-    cache_enabled = false, -- Disable clipboard caching
-  }
-end
-
+-- -- Fix copy and paste in WSL (Windows Subsystem for Linux)
+-- if vim.fn.has("wsl") == 1 then
+--   vim.g.clipboard = {
+--     name = "win32yank", -- Use win32yank for clipboard operations
+--     copy = {
+--       ["+"] = "win32yank.exe -i --crlf", -- Command to copy to the system clipboard
+--       ["*"] = "win32yank.exe -i --crlf", -- Command to copy to the primary clipboard
+--     },
+--     paste = {
+--       ["+"] = "win32yank.exe -o --lf", -- Command to paste from the system clipboard
+--       ["*"] = "win32yank.exe -o --lf", -- Command to paste from the primary clipboard
+--     },
+--     cache_enabled = false, -- Disable clipboard caching
+--   }
+-- end
+--
 -- Setup lazy.nvim with the specified configuration
 require("lazy").setup({
   spec = {
@@ -56,7 +56,7 @@ require("lazy").setup({
     version = false, -- Always use the latest git commit
     -- version = "*", -- Try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } }, -- Specify colorschemes to install
+  install = { colorscheme = { "tokyonight" } }, -- Specify colorschemes to install
   checker = { enabled = true }, -- Automatically check for plugin updates
   performance = {
     rtp = {

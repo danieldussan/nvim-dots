@@ -8,7 +8,27 @@ return {
     -- Description: A pretty list for showing diagnostics, references, telescope results, quickfix and location lists.
     "folke/trouble.nvim",
     -- Options to be merged with the parent specification
-    opts = { use_diagnostic_signs = true }, -- Use diagnostic signs for trouble.nvim
+    optional = true,
+    specs = {
+      "folke/snacks.nvim",
+      opts = function(_, opts)
+        return vim.tbl_deep_extend("force", opts or {}, {
+          picker = {
+            actions = require("trouble.sources.snacks").actions,
+            win = {
+              input = {
+                keys = {
+                  ["<c-t>"] = {
+                    "trouble_open",
+                    mode = { "n", "i" },
+                  },
+                },
+              },
+            },
+          },
+        })
+      end,
+    },
   },
 
   -- Add symbols-outline.nvim plugin

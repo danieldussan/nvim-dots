@@ -1,4 +1,5 @@
 -- This file contains custom key mappings for Neovim.
+local wk = require("which-key")
 
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
@@ -23,21 +24,6 @@ vim.keymap.set({ "i", "n", "v" }, "<C-c>", [[<C-\><C-n>]])
 -- vim.keymap.set("n", "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight) -- Navigate to the right pane
 -- vim.keymap.set("n", "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive) -- Navigate to the last active pane
 -- vim.keymap.set("n", "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext) -- Navigate to the next pane
-
------ OBSIDIAN -----
-vim.keymap.set(
-  "n",
-  "<leader>oc",
-  "<cmd>lua require('obsidian').util.toggle_checkbox()<CR>",
-  { desc = "Obsidian Check Checkbox" }
-)
-vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianTemplate<CR>", { desc = "Insert Obsidian Template" })
-vim.keymap.set("n", "<leader>oo", "<cmd>ObsidianOpen<CR>", { desc = "Open in Obsidian App" })
-vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Show ObsidianBacklinks" })
-vim.keymap.set("n", "<leader>ol", "<cmd>ObsidianLinks<CR>", { desc = "Show ObsidianLinks" })
-vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<CR>", { desc = "Create New Note" })
-vim.keymap.set("n", "<leader>os", "<cmd>ObsidianSearch<CR>", { desc = "Search Obsidian" })
-vim.keymap.set("n", "<leader>oq", "<cmd>ObsidianQuickSwitch<CR>", { desc = "Quick Switch" })
 
 ----- OIL -----
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
@@ -70,18 +56,21 @@ vim.api.nvim_set_keymap("n", "<C-s>", ":lua SaveFile()<CR>", { noremap = true, s
 -- Custom save function
 function SaveFile()
   -- Check if a buffer with a file is open
-  if vim.fn.empty(vim.fn.expand("%:t")) == 1 then
-    vim.notify("No file to save", vim.log.levels.WARN)
-    return
-  end
-
-  local filename = vim.fn.expand("%:t") -- Get only the filename
+  -- if vim.fn.empty(vim.fn.expand("%:t")) == 1 then
+  --   vim.notify("No file to save", vim.log.levels.WARN)
+  --   return
+  -- end
+  local bufname = vim.api.nvim_buf_get_name(0) -- Obtiene el nombre del buffer actual
+  local filename = vim.fn.expand("%:t") -- Obtiene solo el nombre del archivo
   local success, err = pcall(function()
-    vim.cmd("silent! write") -- Try to save the file without showing the default message
+    vim.cmd("silent! write") -- Intenta guardar sin mostrar mensajes por defecto
   end)
 
+  if bufname:match("^oil://") then
+    return
+  end
   if success then
-    vim.notify(filename .. " Saved!") -- Show only the custom message if successful
+    vim.notify(filename .. " Saved!", vim.log.levels.INFO) -- Show only the custom message if successful
   else
     vim.notify("Error: " .. err, vim.log.levels.ERROR) -- Show the error message if it fails
   end
@@ -89,16 +78,82 @@ end
 
 -- Custom keymaps
 
--- Función para alternar el ajuste de líneas
-function ToggleWrap()
-  vim.wo.wrap = not vim.wo.wrap
-end
-
-vim.api.nvim_create_user_command("TWrap", ToggleWrap, {})
-vim.keymap.set("n", "<leader>tw", ":TWrap<CR>", { desc = "Toggle Wrap" })
-
--- Twilight
-vim.keymap.set("n", "<leader>tt", ":Twilight<CR>", { desc = "Toggle Twilight" })
-
--- quick save
-vim.keymap.set("n", "<leader>qw", ":w<CR>", { desc = "Quick Save" })
+wk.add({
+  { "<leader>t", desc = "Custom", icon = " " },
+  {
+    "<leader>tl",
+    function()
+      local twilight_status = vim.g.twilight_enabled
+      vim.cmd("Twilight") -- Ejecuta el comando Twilight
+      -- Verifica el estado de Twilight y muestra una notificación
+      if twilight_status then
+        vim.notify("Twilight Activado 🌙", vim.log.levels.INFO, { title = "Twilight" })
+      else
+        vim.notify("Twilight Desactivado ☀️", vim.log.levels.INFO, { title = "Twilight" })
+      end
+    end,
+    desc = "Toggle Twilight",
+    mode = "n",
+    icon = "󰛨 ",
+  },
+  {
+    "<leader>?",
+    function()
+      require("which-key").show({ global = false }) -- Show the which-key popup for local keybindings
+    end,
+    desc = "Show Which Key",
+    icon = " ",
+  },
+  {
+    "<leader>co",
+    ":Huefy<CR>",
+    desc = "Color Picker",
+    icon = " ",
+  },
+  {
+    "<leader>,",
+    function()
+      Snacks.picker.buffers({
+        -- I always want my buffers picker to start in normal mode
+        on_show = function()
+          vim.cmd.stopinsert()
+        end,
+        finder = "buffers",
+        format = "buffer",
+        hidden = false,
+        unloaded = true,
+        current = true,
+        sort_lastused = true,
+        win = {
+          input = {
+            keys = {
+              ["d"] = "bufdelete",
+            },
+          },
+          list = { keys = { ["d"] = "bufdelete" } },
+        },
+        -- In case you want to override the layout for this keymap
+        -- layout = "ivy",
+      })
+    end,
+    desc = "[P]Snacks picker buffers",
+  },
+  {
+    "<M-k>",
+    function()
+      Snacks.picker.keymaps({
+        layout = "vertical",
+      })
+    end,
+    desc = "Keymaps",
+  },
+  {
+    "<leader>gr",
+    function()
+      Snacks.picker.git_branches({
+        layout = "select",
+      })
+    end,
+    desc = "Git branch selector",
+  },
+})
