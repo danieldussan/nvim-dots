@@ -302,12 +302,19 @@ return {
         matcher = {
           frecency = true,
         },
+        toggles = {
+          follow = "f",
+          hidden = "h",
+          ignored = "i",
+          modified = "m",
+          regex = { icon = "R", value = false },
+        },
         win = {
           input = {
             keys = {
               -- to close the picker on ESC instead of going to normal mode,
               -- add the following keymap to your config
-              ["<Esc>"] = { "close", mode = { "n", "i" } },
+              ["<Esc>"] = { "close", mode = { "n" } },
               -- I'm used to scrolling like this in LazyGit
               ["J"] = { "preview_scroll_down", mode = { "i", "n" } },
               ["K"] = { "preview_scroll_up", mode = { "i", "n" } },
