@@ -115,7 +115,11 @@ return {
     "NvChad/nvim-colorizer.lua",
     opts = {
       user_default_options = {
-        tailwind = true,
+        -- Tailwind colors.  boolean|'normal'|'lsp'|'both'.  True is same as normal
+        tailwind = "both", -- Enable tailwind colors
+        RGB = true, -- #RGB hex codes
+        RGBA = true, -- #RGBA hex codes
+        css = true, -- Enable all CSS *features*:
       },
     },
   },
