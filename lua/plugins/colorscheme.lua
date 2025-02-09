@@ -24,6 +24,7 @@ local colors = {
   linkarzu_color17 = "#141b22",
   linkarzu_color24 = "#F712FF",
   linkarzu_color25 = "#232e3b",
+  linkarzu_color26 = "#030f15",
 }
 return {
   {
@@ -60,7 +61,7 @@ return {
       diagnostics = { darker = true, undercurl = true, background = false },
       colors = {},
       highlights = {
-        ["NormalFloat"] = { bg = colors["linkarzu_color10"] },
+        ["NormalFloat"] = { bg = colors["linkarzu_color26"] },
         ["FloatBorder"] = { bg = colors["linkarzu_color10"], fg = colors["linkarzu_color18"] },
         ["FloatTitle"] = { bg = colors["linkarzu_color10"], fg = colors["linkarzu_color24"] },
         ["TroubleNormal"] = { bg = colors["linkarzu_color10"] },

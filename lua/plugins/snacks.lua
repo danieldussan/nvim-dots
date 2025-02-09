@@ -95,7 +95,14 @@ return {
         win = { style = "input" },
         expand = true,
       },
-      lazygit = { enabled = true },
+      lazygit = {
+        enabled = true,
+        win = {
+          style = "float",
+          width = 0.95,
+          height = 0.95,
+        },
+      },
       notifier = {
         enabled = true,
         timeout = 2000,
@@ -204,7 +211,15 @@ return {
         },
         refresh = 50,
       },
-      terminal = { enabled = true, direction = "float" },
+      terminal = {
+        enabled = true,
+        win = {
+          style = "float",
+          width = 0.6,
+          height = 0.5,
+          border = "rounded",
+        },
+      },
       toggle = { enabled = false },
       win = { enabled = true },
       words = { enabled = false },
@@ -240,6 +255,22 @@ return {
           -- end
           return item
         end,
+        sources = {
+          explorer = {
+            finder = "explorer",
+            sort = { fields = { "sort" } },
+            supports_live = true,
+            tree = true,
+            watch = true,
+            git_status = true,
+            git_status_open = true,
+            follow_file = true,
+            focus = "list",
+            auto_close = true,
+            jump = { close = false },
+            layout = { preset = "default", preview = true },
+          },
+        },
         -- In case you want to make sure that the score manipulation above works
         -- or if you want to check the score of each file
         debug = {
@@ -248,7 +279,7 @@ return {
         -- I like the "ivy" layout, so I set it as the default globaly, you can
         -- still override it in different keymaps
         layout = {
-          preset = "ivy",
+          preset = "default",
           -- When reaching the bottom of the results in the picker, I don't want
           -- it to cycle and go back to the top
           cycle = false,
@@ -296,6 +327,22 @@ return {
               { win = "input", height = 1, border = "bottom" },
               { win = "list", border = "none" },
               { win = "preview", title = "{preview}", height = 0.4, border = "top" },
+            },
+          },
+          default = {
+            layout = {
+              box = "horizontal",
+              width = 0.95,
+              height = 0.95,
+              {
+                box = "vertical",
+                border = "rounded",
+                title = " {title} {live} {flags}",
+                title_pos = "center",
+                { win = "input", height = 1, border = "bottom" },
+                { win = "list", border = "none" },
+              },
+              { win = "preview", border = "rounded", width = 0.65 },
             },
           },
         },

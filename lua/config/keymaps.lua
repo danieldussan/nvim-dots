@@ -136,7 +136,7 @@ wk.add({
         -- layout = "ivy",
       })
     end,
-    desc = "[P]Snacks picker buffers",
+    desc = "Snacks picker buffers",
   },
   {
     "<M-k>",
@@ -157,3 +157,5 @@ wk.add({
     desc = "Git branch selector",
   },
 })
+-- Delete word with ctrl+backspace at insert mode
+vim.api.nvim_set_keymap("i", "<C-BS>", "<C-w>", { noremap = true, silent = true, desc = "Delete word" })
