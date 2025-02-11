@@ -41,17 +41,4 @@ return {
     keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } }, -- Keybinding to open the symbols outline
     config = true, -- Use default configuration
   },
-
-  -- Remove inlay hints from default configuration
-  {
-    -- Plugin: nvim-lspconfig
-    -- URL: https://github.com/neovim/nvim-lspconfig
-    -- Description: Quickstart configurations for the Neovim LSP client.
-    "neovim/nvim-lspconfig",
-    events = "VeryLazy", -- Load this plugin on the 'VeryLazy' event
-    opts = {
-      inlay_hints = { enabled = false }, -- Disable inlay hints
-      servers = {},
-    },
-  },
 }
