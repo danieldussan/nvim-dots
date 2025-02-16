@@ -204,19 +204,21 @@ return {
             },
           },
         },
-        -- command line completion, thanks to dpetka2001 in reddit
-        -- https://www.reddit.com/r/neovim/comments/1hjjf21/comment/m37fe4d/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-        cmdline = function()
+      })
+      opts.cmdline = {
+        sources = function()
           local type = vim.fn.getcmdtype()
+          -- Search forward and backward
           if type == "/" or type == "?" then
             return { "buffer" }
           end
-          if type == ":" then
+          -- Commands
+          if type == ":" or type == "@" then
             return { "cmdline" }
           end
           return {}
         end,
-      })
+      }
       opts.completion = {
         --   keyword = {
         --     -- 'prefix' will fuzzy match on the text before the cursor
