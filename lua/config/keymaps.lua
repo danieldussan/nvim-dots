@@ -80,6 +80,7 @@ end
 
 wk.add({
   { "<leader>t", desc = "Custom", icon = " " },
+  { "<leader>a", desc = "ai" },
   {
     "<leader>tl",
     function()
