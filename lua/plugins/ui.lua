@@ -71,14 +71,6 @@ return {
         command_palette = true, -- Enable command palette view
         lsp_doc_border = true, -- Enable LSP documentation border
       },
-      notify = {
-        -- Noice can be used as `vim.notify` so you can route any notification like other messages
-        -- Notification messages have their level and other properties set.
-        -- event is always "notify" and kind can be any log level as a string
-        -- The default routes will forward notifications to nvim-notify
-        -- Benefit of using Noice for this is the routing and consistent history view
-        enabled = true,
-      },
     },
   },
 
@@ -170,22 +162,5 @@ return {
         },
       })
     end,
-  },
-
-  -- Plugin: zen-mode.nvim
-  -- URL: https://github.com/folke/zen-mode.nvim
-  -- Description: A Neovim plugin for distraction-free coding.
-  {
-    "folke/zen-mode.nvim",
-    cmd = "ZenMode", -- Command to toggle Zen Mode
-    opts = {
-      plugins = {
-        gitsigns = true, -- Enable gitsigns integration
-        tmux = true, -- Enable tmux integration
-        kitty = { enabled = false, font = "+2" }, -- Disable kitty integration and set font size
-        twilight = { enabled = true }, -- Enable twilight integration
-      },
-    },
-    keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } }, -- Keybinding to toggle Zen Mode
   },
 }

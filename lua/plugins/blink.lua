@@ -118,7 +118,7 @@ return {
             name = "snippets",
             enabled = true,
             -- max_items = 8,
-            min_keyword_length = 2,
+            min_keyword_length = 1,
             module = "blink.cmp.sources.snippets",
             score_offset = 100, -- the higher the number, the higher the priority
             -- Only show snippets if I type the trigger_text characters, so
