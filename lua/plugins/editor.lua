@@ -2,6 +2,16 @@
 
 return {
   {
+    "derektata/lorem.nvim",
+    config = function()
+      require("lorem").opts({
+        sentenceLength = "medium",
+        comma_chance = 0,
+        max_commas_per_sentence = 2,
+      })
+    end,
+  },
+  {
     -- Plugin: goto-preview
     -- URL: https://github.com/rmagatti/goto-preview
     -- Description: Provides preview functionality for definitions, declarations, implementations, type definitions, and references.
