@@ -117,10 +117,10 @@ return {
           snippets = {
             name = "snippets",
             enabled = true,
-            -- max_items = 8,
+            max_items = 6,
             min_keyword_length = 1,
             module = "blink.cmp.sources.snippets",
-            score_offset = 100, -- the higher the number, the higher the priority
+            score_offset = 1000, -- the higher the number, the higher the priority
             -- Only show snippets if I type the trigger_text characters, so
             -- to expand the "bash" snippet, if the trigger_text is ";" I have to
             should_show_items = function()
