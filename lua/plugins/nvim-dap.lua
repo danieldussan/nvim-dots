@@ -7,6 +7,7 @@ return {
     -- Description: Debug Adapter Protocol client implementation for Neovim.
     "mfussenegger/nvim-dap",
     recommended = true, -- Recommended plugin
+    lazy = true,
     desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
 
     dependencies = {
