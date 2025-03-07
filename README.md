@@ -12,6 +12,32 @@
 - 📝 Intelligent autocompletion system with Blink-cmp
 - 🎯 File management with Oil
 
+## 📸 Preview
+
+### Dashboard
+A modern and clean dashboard with quick access to recent files and custom actions.
+<div align="center">
+  <img src="images/dashboard.png" alt="Dashboard View" width="800"/>
+</div>
+
+<details>
+<summary><strong>Snacks Plugin Integration</strong></summary>
+
+Powerful file navigation and search capabilities:
+- Tree-style file explorer for project navigation
+- Quick file search by name across the project
+- Full-text search across all project files
+- Integrated with fuzzy finder for fast results
+<img src="images/snacks.png" alt="Snacks Plugin"/>
+</details>
+
+<details>
+<summary><strong>Oil, Blink-cmp and Avante Integration</strong></summary>
+
+Seamless file management with Oil, intelligent code completion with Blink-cmp, and AI assistance with Avante.
+<img src="images/oil-blink-avante.png" alt="Oil, Blink-cmp and Avante"/>
+</details>
+
 ## 🔌 Main Plugins
 
 ### UI and Themes
@@ -59,9 +85,38 @@ The configuration is organized in several files within `lua/`:
 
 ## 🚀 Installation
 
+### Prerequisites
+
+Make sure you have these dependencies installed:
+
+#### Core Tools
+Install these essential tools (use your preferred package manager):
+
+```bash
+# Using apt
+sudo apt install neovim lazygit fzf
+
+# Using brew
+brew install neovim lazygit fzf
+
+```
+
+#### Required System Packages
+```bash
+sudo apt install git ripgrep fd-find nodejs npm
+```
+
+#### Language Servers & Formatters
+```bash
+# Install global npm packages
+npm install -g prettier typescript typescript-language-server
+```
+
+### Setup
+
 1. Clone this repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/nvim-dots.git ~/.config/nvim
+git clone https://github.com/danieldussan/nvim-dots.git ~/.config/nvim
 ```
 
 2. Start Neovim and wait for plugins to install:
@@ -69,18 +124,7 @@ git clone https://github.com/YOUR_USERNAME/nvim-dots.git ~/.config/nvim
 nvim
 ```
 
-## 📸 Preview
-
-<div align="center">
-  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 10px;">
-    <img src="images/dashboard.png" alt="Dashboard View" width="400"/>
-    <img src="images/dashboard.png" alt="Code Editor" width="400"/>
-  </div>
-  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-    <img src="images/dashboard.png" alt="Terminal Integration" width="400"/>
-    <img src="images/dashboard.png" alt="AI Assistant" width="400"/>
-  </div>
-</div>
+The first startup might take a few minutes as it installs all plugins and language servers.
 
 ## 🎨 Customization
 
