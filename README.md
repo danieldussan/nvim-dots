@@ -69,7 +69,7 @@ git clone https://github.com/YOUR_USERNAME/nvim-dots.git ~/.config/nvim
 nvim
 ```
 
-## 📸 Screenshots
+## 📸 Preview
 
 <div align="center">
   <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 10px;">
@@ -90,6 +90,8 @@ You can customize the configuration by editing the files in `lua/plugins/`. Each
 
 - [LazyVim](https://github.com/LazyVim/LazyVim)
 - [Neovim](https://neovim.io/)
+- [Gentleman-Dots](https://github.com/Gentleman-Programming/Gentleman.Dots/tree/main)
+- [Linkarsu](https://github.com/linkarzu/dotfiles-latest)
 <!-- Add more inspiring configuration references -->
 
 ## 📝 License
