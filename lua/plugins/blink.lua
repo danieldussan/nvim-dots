@@ -47,13 +47,8 @@ return {
       -- NOTE: by default lazyvim already includes the lazydev source, so not adding it here again
       opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
         default = { "lsp", "path", "snippets", "buffer", "emoji", "dictionary", "lazydev" },
-        compat = { "supermaven", "codeium" },
+        compat = { "codeium" },
         providers = {
-          supermaven = {
-            kind = "Supermaven",
-            score_offset = 25,
-            async = false,
-          },
           codeium = {
             kind = "Codeium",
             score_offset = 25,

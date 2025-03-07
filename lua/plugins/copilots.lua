@@ -7,6 +7,8 @@ return {
   },
   {
     "Exafunction/codeium.nvim",
+    lazy = true,
+    event = "BufReadPre",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "hrsh7th/nvim-cmp",
