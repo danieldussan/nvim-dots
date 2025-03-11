@@ -3,6 +3,7 @@
 return {
   {
     "derektata/lorem.nvim",
+    event = "VeryLazy", -- Load the plugin when a buffer is entered
     config = function()
       require("lorem").opts({
         sentenceLength = "medium",
@@ -10,6 +11,12 @@ return {
         max_commas_per_sentence = 2,
       })
     end,
+  },
+  {
+    "laytan/tailwind-sorter.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
+    build = "cd formatter && npm ci && npm run build",
+    config = true,
   },
   {
     -- Plugin: goto-preview
@@ -64,6 +71,26 @@ return {
     "echasnovski/mini.hipatterns",
     event = "BufReadPre", -- Load the plugin before reading a buffer
     opts = {
+      tailwind = {
+        enabled = true,
+        ft = {
+          "astro",
+          "css",
+          "heex",
+          "html",
+          "html-eex",
+          "javascript",
+          "javascriptreact",
+          "rust",
+          "svelte",
+          "typescript",
+          "typescriptreact",
+          "vue",
+        },
+        -- full: the whole css class will be highlighted
+        -- compact: only the color will be highlighted
+        style = "full",
+      },
       highlighters = {
         hsl_color = {
           pattern = "hsl%(%d+,? %d+,? %d+%)", -- Pattern to match HSL color values
