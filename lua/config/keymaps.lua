@@ -98,18 +98,24 @@ wk.add({
     icon = "󰛨 ",
   },
   {
+    "<leader>tc",
+    ":Huefy<CR>",
+    desc = "Color Picker",
+    icon = " ",
+  },
+  {
+    "<leader>ts",
+    ":TailwindSort<CR>",
+    desc = "Color Picker",
+    icon = " ",
+  },
+  {
     "<leader>?",
     function()
       require("which-key").show({ global = false }) -- Show the which-key popup for local keybindings
     end,
     desc = "Show Which Key",
     icon = " ",
-  },
-  {
-    "<leader>tc",
-    ":Huefy<CR>",
-    desc = "Color Picker",
-    icon = " ",
   },
   {
     "<leader>,",
