@@ -14,6 +14,7 @@ return {
   },
   {
     "laytan/tailwind-sorter.nvim",
+    event = "VeryLazy", -- Load the plugin when a buffer is entered
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
     build = "cd formatter && npm ci && npm run build",
     config = true,

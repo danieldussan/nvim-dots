@@ -202,6 +202,9 @@ return {
       })
       opts.cmdline = {
         completion = { menu = { auto_show = true } },
+        keymap = {
+          ["<CR>"] = { "accept_and_enter", "fallback" },
+        },
         sources = function()
           local type = vim.fn.getcmdtype()
           -- Search forward and backward
