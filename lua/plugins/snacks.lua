@@ -271,6 +271,9 @@ return {
             jump = { close = false },
             layout = { preset = "default", preview = true },
           },
+          files = {
+            exclude = { "node_modules", ".git", "build", "dist", "venv", "__pycache__" },
+          },
         },
         -- In case you want to make sure that the score manipulation above works
         -- or if you want to check the score of each file

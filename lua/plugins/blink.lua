@@ -185,9 +185,19 @@ return {
         },
       })
       opts.cmdline = {
-        completion = { menu = { auto_show = true } },
+        completion = {
+          menu = { auto_show = true },
+          list = {
+            selection = {
+              preselect = false,
+              auto_insert = false,
+            },
+          },
+        },
         keymap = {
           ["<CR>"] = { "accept_and_enter", "fallback" },
+          ["<Up>"] = { "select_prev", "fallback" },
+          ["<Down>"] = { "select_next", "fallback" },
         },
         sources = function()
           local type = vim.fn.getcmdtype()
