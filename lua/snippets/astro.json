@@ -1,0 +1,24 @@
+{
+  "Astro Frontmatter Empty": {
+    "prefix": "astroempty",
+    "body": ["---", "$1", "---", "", "<div>${2:${TM_FILENAME_BASE}}</div>"],
+    "description": "Crea un archivo Astro con frontmatter vacío y un div con el nombre del archivo"
+  },
+  "Astro Full Template": {
+    "prefix": "astrofull",
+    "body": [
+      "---",
+      "$1",
+      "---",
+      "",
+      "<div>${2:${TM_FILENAME_BASE}}</div>",
+      "",
+      "<script>",
+      "</script>",
+      "",
+      "<style>",
+      "</style>"
+    ],
+    "description": "Crea un archivo Astro con frontmatter vacío, un div con el nombre del archivo, y etiquetas script y style"
+  }
+}
