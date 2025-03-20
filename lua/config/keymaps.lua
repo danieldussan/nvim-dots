@@ -82,22 +82,6 @@ wk.add({
   { "<leader>t", desc = "Custom", icon = " " },
   { "<leader>a", desc = "ai" },
   {
-    "<leader>tl",
-    function()
-      local twilight_status = vim.g.twilight_enabled
-      vim.cmd("Twilight") -- Ejecuta el comando Twilight
-      -- Verifica el estado de Twilight y muestra una notificación
-      if twilight_status then
-        vim.notify("Twilight Activado 🌙", vim.log.levels.INFO, { title = "Twilight" })
-      else
-        vim.notify("Twilight Desactivado ☀️", vim.log.levels.INFO, { title = "Twilight" })
-      end
-    end,
-    desc = "Toggle Twilight",
-    mode = "n",
-    icon = "󰛨 ",
-  },
-  {
     "<leader>tc",
     ":Huefy<CR>",
     desc = "Color Picker",
@@ -107,7 +91,7 @@ wk.add({
     "<leader>ts",
     ":TailwindSort<CR>",
     desc = "Tailwind Sort",
-    icon = " ",
+    icon = "󱏿 ",
   },
   {
     "<leader>?",
@@ -153,15 +137,6 @@ wk.add({
       })
     end,
     desc = "Keymaps",
-  },
-  {
-    "<leader>gr",
-    function()
-      Snacks.picker.git_branches({
-        layout = "select",
-      })
-    end,
-    desc = "Git branch selector",
   },
 })
 -- Delete word with ctrl+backspace at insert mode
