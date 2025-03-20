@@ -106,7 +106,7 @@ wk.add({
   {
     "<leader>ts",
     ":TailwindSort<CR>",
-    desc = "Color Picker",
+    desc = "Tailwind Sort",
     icon = " ",
   },
   {
