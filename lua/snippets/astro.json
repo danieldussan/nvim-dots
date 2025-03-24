@@ -20,5 +20,10 @@
       "</style>"
     ],
     "description": "Crea un archivo Astro con frontmatter vacío, un div con el nombre del archivo, y etiquetas script y style"
+  },
+  "Astro props": {
+    "prefix": "astroprops",
+    "body": ["const { ${1:prop} } = Astro.props;"],
+    "description": "Crea una variable con el nombre del atributo pasado como parámetro"
   }
 }
