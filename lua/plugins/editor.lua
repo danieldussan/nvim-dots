@@ -2,15 +2,29 @@
 
 return {
   {
-    "derektata/lorem.nvim",
-    event = "VeryLazy", -- Load the plugin when a buffer is entered
-    config = function()
-      require("lorem").opts({
-        sentenceLength = "medium",
-        comma_chance = 0,
-        max_commas_per_sentence = 2,
-      })
-    end,
+    -- Plugin: emmet-vim
+    -- URL: https://github.com/mattn/emmet-vim
+    -- Description: Provides support for expanding Emmet abbreviations in Vim.
+    "mattn/emmet-vim",
+    ft = { "html", "css", "javascript", "javascriptreact", "typescriptreact", "astro" },
+    -- config = function()
+    --   vim.keymap.set("i", "<C-,>", "<Plug>(emmet-expand-abbr)", { noremap = false, silent = true })
+    --   vim.keymap.set("n", "<C-,>", "i<Plug>(emmet-expand-abbr)", { noremap = false, silent = true })
+    -- end,
+    keys = {
+      {
+        "<C-,>",
+        "<Plug>(emmet-expand-abbr)",
+        mode = { "i" },
+        desc = "Expand Emmet abbreviation",
+      },
+      {
+        "<C-,>",
+        "i<Plug>(emmet-expand-abbr)",
+        mode = { "n" },
+        desc = "Expand Emmet abbreviation",
+      },
+    },
   },
   {
     "luckasRanarison/tailwind-tools.nvim",
