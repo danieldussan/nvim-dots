@@ -144,11 +144,15 @@ return {
               auto_insert = false,
             },
           },
+          menu = {
+            auto_show = true,
+          },
         },
         keymap = {
           ["<CR>"] = { "accept_and_enter", "fallback" },
           ["<Up>"] = { "select_prev", "fallback" },
           ["<Down>"] = { "select_next", "fallback" },
+          ["<C-c>"] = { "hide", "fallback" },
         },
         sources = function()
           local type = vim.fn.getcmdtype()
