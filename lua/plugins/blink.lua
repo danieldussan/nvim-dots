@@ -22,10 +22,7 @@ return {
     -- working release
     -- https://github.com/Saghen/blink.cmp/releases
     -- version = "v0.9.3",
-    dependencies = {
-      "moyiz/blink-emoji.nvim",
-      "Kaiser-Yang/blink-cmp-dictionary",
-    },
+    dependencies = {},
     opts = function(_, opts)
       -- I noticed that telescope was extremeley slow and taking too long to open,
       -- assumed related to blink, so disabled blink and in fact it was related
