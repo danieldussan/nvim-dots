@@ -11,4 +11,9 @@ return {
   config = function()
     require("mcphub").setup()
   end,
+  extensions = {
+    avante = {
+      auto_approve_mcp_tool_calls = false, -- Auto approves mcp tool calls.
+    },
+  },
 }
