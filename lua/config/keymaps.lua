@@ -94,6 +94,12 @@ wk.add({
     icon = "󱏿 ",
   },
   {
+    "<leader>tm",
+    ":MCPHub<CR>",
+    desc = "MCP Hub",
+    icon = " ",
+  },
+  {
     "<leader>?",
     function()
       require("which-key").show({ global = false }) -- Show the which-key popup for local keybindings
