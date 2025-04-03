@@ -17,7 +17,7 @@ return {
               url = "https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${api_key}",
               env = {
                 api_key = function()
-                  return os.getenv("GEMINI_API_KEY_DSS1")
+                  return os.getenv("GEMINI_API_KEY_DSS1000")
                 end,
               },
               model = "gemini-2.0-flash-001",
