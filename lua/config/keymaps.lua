@@ -1,6 +1,6 @@
 -- This file contains custom key mappings for Neovim.
 local wk = require("which-key")
-
+local mapping_key_prefix = "<leader>z"
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
@@ -94,6 +94,12 @@ wk.add({
     icon = "󱏿 ",
   },
   {
+    "<leader>tm",
+    ":MCPHub<CR>",
+    desc = "MCP Hub",
+    icon = " ",
+  },
+  {
     "<leader>?",
     function()
       require("which-key").show({ global = false }) -- Show the which-key popup for local keybindings
@@ -139,5 +145,110 @@ wk.add({
     desc = "Keymaps",
   },
 })
+
+-- CodeCompanion Keybindings
+
+wk.add({
+  { mapping_key_prefix, desc = "Code Companion", icon = "" },
+  {
+    mapping_key_prefix .. "a",
+    ":CodeCompanionActions<CR>",
+    desc = "Actions",
+    icon = "⚡",
+  },
+  {
+    mapping_key_prefix .. "v",
+    ":CodeCompanionChat Toggle<CR>",
+    desc = "Toggle Chat",
+    icon = "💬",
+  },
+  {
+    mapping_key_prefix .. "e",
+    ":CodeCompanion /explain<CR>",
+    desc = "Explain Code",
+    icon = "📖",
+    mode = "v",
+  },
+  {
+    mapping_key_prefix .. "f",
+    ":CodeCompanion /fix<CR>",
+    desc = "Fix Code",
+    icon = "🛠",
+    mode = "v",
+  },
+  {
+    mapping_key_prefix .. "l",
+    ":CodeCompanion /lsp<CR>",
+    desc = "Explain LSP",
+    icon = "🔍",
+    mode = { "n", "v" },
+  },
+  {
+    mapping_key_prefix .. "t",
+    ":CodeCompanion /tests<CR>",
+    desc = "Generate Unit Test",
+    icon = "🧪",
+    mode = "v",
+  },
+  {
+    mapping_key_prefix .. "m",
+    ":CodeCompanion /commit<CR>",
+    desc = "Git Commit Message",
+    icon = "📜",
+  },
+  {
+    mapping_key_prefix .. "M",
+    ":CodeCompanion /staged-commit<CR>",
+    desc = "Git Commit (Staged)",
+    icon = "📜",
+  },
+  {
+    mapping_key_prefix .. "d",
+    ":CodeCompanion /inline-doc<CR>",
+    desc = "Inline Documentation",
+    icon = "📝",
+    mode = "v",
+  },
+  {
+    mapping_key_prefix .. "D",
+    ":CodeCompanion /doc<CR>",
+    desc = "Document Code",
+    icon = "📄",
+    mode = "v",
+  },
+  {
+    mapping_key_prefix .. "r",
+    ":CodeCompanion /refactor<CR>",
+    desc = "Refactor Code",
+    icon = "♻️",
+    mode = "v",
+  },
+  {
+    mapping_key_prefix .. "R",
+    ":CodeCompanion /review<CR>",
+    desc = "Review Code",
+    icon = "🔍",
+    mode = "v",
+  },
+  {
+    mapping_key_prefix .. "n",
+    ":CodeCompanion /naming<CR>",
+    desc = "Better Naming",
+    icon = "🏷",
+    mode = "v",
+  },
+  {
+    mapping_key_prefix .. "q",
+    function()
+      local input = vim.fn.input("Quick Chat: ")
+      if input ~= "" then
+        vim.cmd("CodeCompanion " .. input)
+      end
+    end,
+    desc = "Quick Chat",
+    icon = "💡",
+  },
+})
+
 -- Delete word with ctrl+backspace at insert mode
 vim.api.nvim_set_keymap("i", "<C-BS>", "<C-w>", { noremap = true, silent = true, desc = "Delete word" })
