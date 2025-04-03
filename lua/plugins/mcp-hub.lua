@@ -16,5 +16,11 @@ return {
     avante = {
       auto_approve_mcp_tool_calls = false, -- Auto approves mcp tool calls.
     },
+    codecompanion = {
+      -- Show the mcp tool result in the chat buffer
+      show_result_in_chat = true,
+      -- Make chat #variables from MCP server resources
+      make_vars = true,
+    },
   },
 }
