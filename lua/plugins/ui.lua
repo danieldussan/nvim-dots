@@ -29,6 +29,7 @@ return {
     -- URL: https://github.com/akinsho/bufferline.nvim
     -- Description: A snazzy buffer line (with tabpage integration) for Neovim.
     "akinsho/bufferline.nvim",
+    lazy = true,
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
