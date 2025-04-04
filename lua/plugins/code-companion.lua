@@ -7,6 +7,20 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
   },
+  init = function()
+    vim.cmd([[cab cc CodeCompanion]])
+    require("lib.codecompanion-notifier"):init()
+
+    local group = vim.api.nvim_create_augroup("CodeCompanionHooks", {})
+
+    vim.api.nvim_create_autocmd({ "User" }, {
+      pattern = "CodeCompanionInlineFinished",
+      group = group,
+      callback = function(request)
+        vim.lsp.buf.format({ bufnr = request.buf })
+      end,
+    })
+  end,
   opts = {
     strategies = {
       chat = {
@@ -44,7 +58,6 @@ return {
                 "cmd_runner",
                 "editor",
                 "files",
-                "mcp",
               },
             },
             ["mcp"] = {
