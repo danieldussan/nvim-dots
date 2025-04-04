@@ -24,16 +24,56 @@ return {
             },
           })
         end,
+        roles = {
+          ---The header name for the LLM's messages
+          ---@type string|fun(adapter: CodeCompanion.Adapter): string
+          llm = function(adapter)
+            return "AI (" .. adapter.formatted_name .. ")"
+          end,
+
+          ---The header name for your messages
+          ---@type string
+          user = "Daniel",
+        },
         tools = {
-          ["mcp"] = {
-            -- Prevent mcphub from loading before needed
-            callback = function()
-              return require("mcphub.extensions.codecompanion")
-            end,
-            description = "Call tools and resources from the MCP Servers",
+          groups = {
+            ["Daniel"] = {
+              description = "Daniel",
+              system_prompt = prompts.DANIEL_SYSTEM_PROMPT,
+              tools = {
+                "cmd_runner",
+                "editor",
+                "files",
+                "mcp",
+              },
+            },
+            ["mcp"] = {
+              -- Prevent mcphub from loading before needed
+              callback = function()
+                return require("mcphub.extensions.codecompanion")
+              end,
+              description = "Call tools and resources from the MCP Servers",
+            },
           },
         },
         slash_commands = {
+          ["git_files"] = {
+            description = "List git files",
+            ---@param chat CodeCompanion.Chat
+            callback = function(chat)
+              local handle = io.popen("git ls-files")
+              if handle ~= nil then
+                local result = handle:read("*a")
+                handle:close()
+                chat:add_reference({ role = "user", content = result }, "git", "<git_files>")
+              else
+                return vim.notify("No git files available", vim.log.levels.INFO, { title = "CodeCompanion" })
+              end
+            end,
+            opts = {
+              contains_code = false,
+            },
+          },
           ["buffer"] = {
             callback = "strategies.chat.slash_commands.buffer",
             description = "Insert open buffers",
@@ -53,7 +93,19 @@ return {
           },
         },
       },
-      inline = { adapter = "gemini" },
+      inline = {
+        adapter = "gemini",
+        keymaps = {
+          accept_change = {
+            modes = { n = "ga" },
+            description = "Accept the suggested change",
+          },
+          reject_change = {
+            modes = { n = "gr" },
+            description = "Reject the suggested change",
+          },
+        },
+      },
       agent = { adapter = "gemini" },
     },
     default_adapter = "gemini",

@@ -150,15 +150,17 @@ wk.add({
 -- CodeCompanion Keybindings
 
 wk.add({
+  { "ga", "<cmd>CodeCompanionChat Add<CR>", mode = { "v" }, desc = "AI Add to Chat" },
   { code_companion_key_prefix, desc = "Code Companion", icon = "" },
   {
     code_companion_key_prefix .. "a",
     ":CodeCompanionActions<CR>",
     desc = "Actions",
     icon = "⚡",
+    mode = { "n", "v" },
   },
   {
-    code_companion_key_prefix .. "v",
+    code_companion_key_prefix .. "c",
     ":CodeCompanionChat Toggle<CR>",
     desc = "Toggle Chat",
     icon = "💬",
