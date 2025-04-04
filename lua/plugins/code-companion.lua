@@ -128,7 +128,9 @@ return {
     },
     display = {
       chat = {
-        width = 20,
+        window = {
+          width = 0.35,
+        },
       },
     },
     prompt_library = {
