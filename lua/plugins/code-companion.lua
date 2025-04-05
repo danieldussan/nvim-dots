@@ -52,7 +52,6 @@ return {
         tools = {
           groups = {
             ["Daniel"] = {
-
               description = "Frontend expert (React, Next.js, Astro)",
               system_prompt = prompts.DANIEL_SYSTEM_PROMPT,
               tools = {
