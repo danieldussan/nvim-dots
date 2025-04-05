@@ -52,7 +52,8 @@ return {
         tools = {
           groups = {
             ["Daniel"] = {
-              description = "Daniel",
+
+              description = "Frontend expert (React, Next.js, Astro)",
               system_prompt = prompts.DANIEL_SYSTEM_PROMPT,
               tools = {
                 "cmd_runner",
