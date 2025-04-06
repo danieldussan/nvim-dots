@@ -81,7 +81,6 @@ end
 wk.add({
   { "<leader>t", desc = "Custom", icon = " " },
   { "<leader>a", desc = "ai" },
-  { "<leader>j", desc = "LspSaga", icon = " " },
   {
     "<leader>tc",
     ":Huefy<CR>",
