@@ -12,7 +12,28 @@ return {
       bigfile = {
         enabled = true,
         notify = true,
-        size = 100 * 1024, -- 100 KB
+        size = 200 * 1024, -- 200 KB
+      },
+      image = {
+        enabled = true,
+        formats = {
+          "svg", -- no included by default
+          "png",
+          "jpg",
+          "jpeg",
+          "gif",
+          "bmp",
+          "webp",
+          "tiff",
+          "heic",
+          "avif",
+          "mp4",
+          "mov",
+          "avi",
+          "mkv",
+          "webm",
+          "pdf",
+        },
       },
       bufdelete = { enabled = true },
       dashboard = {

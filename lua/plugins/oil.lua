@@ -23,7 +23,7 @@ return {
       ["~"] = { "actions.cd", opts = { scope = "tab" }, desc = ":tcd to the current oil directory" }, -- Change directory for the current tab
       ["gs"] = "actions.change_sort", -- Change sorting method
       ["gx"] = "actions.open_external", -- Open entry with external application
-      ["g."] = "actions.toggle_hidden", -- Toggle hidden files
+      ["."] = "actions.toggle_hidden", -- Toggle hidden files
       ["g\\"] = "actions.toggle_trash", -- Toggle trash
     },
     use_default_keymaps = false, -- Do not use default key mappings
