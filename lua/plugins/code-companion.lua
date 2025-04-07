@@ -22,22 +22,20 @@ return {
     })
   end,
   opts = {
+    adapters = {
+      copilot = function()
+        return require("codecompanion.adapters").extend("copilot", {
+          schema = {
+            model = {
+              default = "claude-3.7-sonnet",
+            },
+          },
+        })
+      end,
+    },
     strategies = {
       chat = {
-        adapter = "gemini",
-        gemini = function()
-          return require("codecompanion.adapters").extend("gemini", {
-            env = {
-              url = "https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${api_key}",
-              env = {
-                api_key = function()
-                  return os.getenv("GEMINI_API_KEY_DSS1000")
-                end,
-              },
-              model = "gemini-2.0-flash-001",
-            },
-          })
-        end,
+        adapter = "copilot",
         roles = {
           ---The header name for the LLM's messages
           ---@type string|fun(adapter: CodeCompanion.Adapter): string
@@ -106,9 +104,11 @@ return {
             },
           },
         },
+        inline = { adapter = "copilot" },
+        agent = { adapter = "copilot" },
       },
       inline = {
-        adapter = "gemini",
+        adapter = "copilot",
         keymaps = {
           accept_change = {
             modes = { n = "ga" },
@@ -120,9 +120,9 @@ return {
           },
         },
       },
-      agent = { adapter = "gemini" },
+      agent = { adapter = "copilot" },
     },
-    default_adapter = "gemini",
+    default_adapter = "copilot",
     opts = {
       log_level = "DEBUG",
       system_prompt = prompts.SYSTEM_PROMPT,

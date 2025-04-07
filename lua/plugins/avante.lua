@@ -9,8 +9,8 @@ return {
   opts = {
     -- add any opts here
     -- for example
-    provider = "gemini",
-    -- copilit = "gemini",
+    provider = "copilot",
+    -- copilot = "copilot",
     behaviour = {
       auto_suggestions = false, -- Experimental stage
       auto_set_highlight_group = true,
