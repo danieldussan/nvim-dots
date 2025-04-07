@@ -4,14 +4,14 @@
 
 ## 📑 Table of Contents
 
-- [Preview](#-preview)
-- [Key Features](#-key-features)
-- [Main Plugins](#-main-plugins)
-- [Prerequisites](#-prerequisites)
-- [Setup](#-setup)
-- [Customization](#-customization)
-- [References and Acknowledgments](#-references-and-acknowledgments)
-- [License](#-license)
+- [Preview](#preview)
+- [Key Features](#key-features)
+- [Main Plugins](#main-plugins)
+- [Prerequisites](#prerequisites)
+- [Setup](#setup)
+- [Customization](#customization)
+- [References and Acknowledgments](#references-and-acknowledgments)
+- [License](#license)
 
 ## Preview
 
