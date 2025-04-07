@@ -108,7 +108,7 @@ return {
             filename = "[+] " .. filename
           end
 
-          local colorFilename = isModified and "#edce32" or "#a6a49d"
+          local colorFilename = isModified and "#edce32" or "#f1f1f0"
           local icon, color = require("nvim-web-devicons").get_icon_color(filename) -- Get the icon and color for the file
 
           -- Return the rendered content
