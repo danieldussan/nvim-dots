@@ -141,7 +141,10 @@ return {
           {
             role = "user",
             content = function()
+              local branch_name = vim.fn.system("git branch --show-current"):gsub("%s+", "")
               return "Write commit message with commitizen convention. Write clear, informative commit messages that explain the 'what' and 'why' behind changes, not just the 'how'."
+                .. "\n\nBranch: "
+                .. branch_name
                 .. "\n\n```\n"
                 .. vim.fn.system("git diff")
                 .. "\n```"
@@ -223,7 +226,10 @@ return {
           {
             role = "user",
             content = function()
+              local branch_name = vim.fn.system("git branch --show-current"):gsub("%s+", "")
               return "Write commit message for the change with commitizen convention. Write clear, informative commit messages that explain the 'what' and 'why' behind changes, not just the 'how'."
+                .. "\n\nBranch: "
+                .. branch_name
                 .. "\n\n```\n"
                 .. vim.fn.system("git diff --staged")
                 .. "\n```"
