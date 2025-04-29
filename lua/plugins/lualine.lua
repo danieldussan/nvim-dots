@@ -43,7 +43,6 @@ return {
           "diagnostics",
         },
         lualine_c = {
-          "filename",
           {
             function()
               local register = vim.fn.reg_recording()
@@ -62,6 +61,7 @@ return {
         lualine_y = {
           "searchcount",
           "progress",
+          "filesize",
         },
         lualine_z = {
           "location",
