@@ -22,6 +22,16 @@ return {
     })
   end,
   opts = {
+    extensions = {
+      mcphub = {
+        callback = "mcphub.extensions.codecompanion",
+        opts = {
+          show_result_in_chat = true, -- Show mcp tool results in chat
+          make_vars = true, -- Convert resources to #variables
+          make_slash_commands = true, -- Add prompts as /slash commands
+        },
+      },
+    },
     adapters = {
       copilot = function()
         return require("codecompanion.adapters").extend("copilot", {
@@ -59,13 +69,6 @@ return {
                 "mcp",
               },
             },
-          },
-          ["mcp"] = {
-            -- Prevent mcphub from loading before needed
-            callback = function()
-              return require("mcphub.extensions.codecompanion")
-            end,
-            description = "Call tools and resources from the MCP Servers",
           },
         },
         slash_commands = {
@@ -132,6 +135,13 @@ return {
         window = {
           width = 0.35,
         },
+      },
+      diff = {
+        enabled = true,
+        close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
+        layout = "vertical", -- vertical|horizontal split for default provider
+        opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
+        provider = "default", -- default|mini_diff
       },
     },
     prompt_library = {
