@@ -102,7 +102,7 @@ return {
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
-      event = "VeryLazy",
+      event = "BufReadPre",
       opts = {
         -- recommended settings
         default = {

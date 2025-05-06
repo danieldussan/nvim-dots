@@ -42,7 +42,7 @@ return {
     -- URL: https://github.com/rmagatti/goto-preview
     -- Description: Provides preview functionality for definitions, declarations, implementations, type definitions, and references.
     "rmagatti/goto-preview",
-    event = "VeryLazy", -- Load the plugin when a buffer is entered
+    event = "BufReadPre", -- Load the plugin when a buffer is entered
     config = true, -- Enable default configuration
     keys = {
       {
