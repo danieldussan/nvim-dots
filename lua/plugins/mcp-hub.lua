@@ -15,6 +15,7 @@ return {
       extensions = {
         avante = {
           auto_approve_mcp_tool_calls = true,
+          make_slash_commands = true, -- make /slash commands from MCP server prompts
         },
         codecompanion = {
           show_result_in_chat = true,
