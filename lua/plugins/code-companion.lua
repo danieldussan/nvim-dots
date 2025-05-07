@@ -66,7 +66,7 @@ return {
                 "cmd_runner",
                 "editor",
                 "files",
-                "mcp",
+                "use_mcp_tool",
               },
             },
           },
