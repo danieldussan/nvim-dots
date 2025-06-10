@@ -115,6 +115,13 @@ return {
       "HakonHarnes/img-clip.nvim",
       event = "BufReadPre",
       opts = {
+        filetypes = {
+          codecompanion = {
+            prompt_for_file_name = false,
+            template = "[Image]($FILE_PATH)",
+            use_absolute_path = true,
+          },
+        },
         -- recommended settings
         default = {
           embed_image_as_base64 = false,

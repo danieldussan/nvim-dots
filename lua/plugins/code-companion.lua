@@ -65,7 +65,7 @@ return {
               tools = {
                 "cmd_runner",
                 "editor",
-                "files",
+                "read_file",
                 "use_mcp_tool",
               },
             },
