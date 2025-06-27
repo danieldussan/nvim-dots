@@ -64,9 +64,11 @@ return {
               system_prompt = prompts.DANIEL_SYSTEM_PROMPT,
               tools = {
                 "cmd_runner",
-                "editor",
                 "read_file",
                 "use_mcp_tool",
+                "insert_edit_into_file",
+                "file_search",
+                "create_file",
               },
             },
           },
