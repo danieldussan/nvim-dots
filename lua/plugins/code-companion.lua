@@ -64,11 +64,10 @@ return {
               system_prompt = prompts.DANIEL_SYSTEM_PROMPT,
               tools = {
                 "cmd_runner",
-                "read_file",
-                "use_mcp_tool",
-                "insert_edit_into_file",
-                "file_search",
-                "create_file",
+                "files",
+                "mcp",
+                "mcphub",
+                "filesystem",
               },
             },
           },
@@ -252,34 +251,6 @@ return {
           },
         },
       },
-      ["Inline Document"] = {
-        strategy = "inline",
-        description = "Add documentation for code.",
-        opts = {
-          modes = { "v" },
-          short_name = "inline-doc",
-          auto_submit = true,
-          user_prompt = false,
-          stop_context_insertion = true,
-        },
-        prompts = {
-          {
-            role = "user",
-            content = function(context)
-              local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
-
-              return "Please provide documentation in comment code for the following code and suggest to have better naming to improve readability.\n\n```"
-                .. context.filetype
-                .. "\n"
-                .. code
-                .. "\n```\n\n"
-            end,
-            opts = {
-              contains_code = true,
-            },
-          },
-        },
-      },
       ["Document"] = {
         strategy = "chat",
         description = "Write documentation for code.",
@@ -397,71 +368,6 @@ return {
             opts = {
               contains_code = true,
             },
-          },
-        },
-      },
-      ["Refactor Code"] = {
-        strategy = "chat",
-        description = "Refactor the provided code snippet.",
-        opts = {
-          short_name = "refactor-code",
-          auto_submit = false,
-          is_slash_cmd = true,
-        },
-        prompts = {
-          {
-            role = "system",
-            content = prompts.COPILOT_REFACTOR,
-            opts = {
-              visible = false,
-            },
-          },
-          {
-            role = "user",
-            content = "Please refactor the following code to improve its clarity and readability.",
-          },
-        },
-      },
-      ["Naming"] = {
-        strategy = "inline",
-        description = "Give betting naming for the provided code snippet.",
-        opts = {
-          modes = { "v" },
-          short_name = "naming",
-          auto_submit = true,
-          user_prompt = false,
-          stop_context_insertion = true,
-        },
-        prompts = {
-          {
-            role = "user",
-            content = function(context)
-              local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
-
-              return "Please provide better names for the following variables and functions:\n\n```"
-                .. context.filetype
-                .. "\n"
-                .. code
-                .. "\n```\n\n"
-            end,
-            opts = {
-              contains_code = true,
-            },
-          },
-        },
-      },
-      ["Better Naming"] = {
-        strategy = "chat",
-        description = "Give betting naming for the provided code snippet.",
-        opts = {
-          short_name = "better-naming",
-          auto_submit = false,
-          is_slash_cmd = true,
-        },
-        prompts = {
-          {
-            role = "user",
-            content = "Please provide better names for the following variables and functions.",
           },
         },
       },
