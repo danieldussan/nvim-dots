@@ -252,5 +252,52 @@ wk.add({
   },
 })
 
+-- Register keymaps for Overseer.nvim
+
+wk.add({
+  { "<leader>o", desc = "Overseer", icon = "" },
+  {
+    "<leader>ow",
+    "<cmd>OverseerToggle<cr>",
+    desc = "Task list",
+    icon = "",
+  },
+  {
+    "<leader>oo",
+    "<cmd>OverseerRun<cr>",
+    desc = "Run task",
+    icon = "",
+  },
+  {
+    "<leader>oq",
+    "<cmd>OverseerQuickAction<cr>",
+    desc = "Action recent task",
+    icon = "",
+  },
+  {
+    "<leader>oi",
+    "<cmd>OverseerInfo<cr>",
+    desc = "Overseer Info",
+    icon = "",
+  },
+  {
+    "<leader>ob",
+    "<cmd>OverseerBuild<cr>",
+    desc = "Task builder",
+    icon = "",
+  },
+  {
+    "<leader>ot",
+    "<cmd>OverseerTaskAction<cr>",
+    desc = "Task action",
+    icon = "",
+  },
+  {
+    "<leader>oc",
+    "<cmd>OverseerClearCache<cr>",
+    desc = "Clear cache",
+    icon = "",
+  },
+})
 -- Delete word with ctrl+backspace at insert mode
 vim.api.nvim_set_keymap("i", "<C-BS>", "<C-w>", { noremap = true, silent = true, desc = "Delete word" })
