@@ -17,6 +17,11 @@ return {
   },
   opts = function(_, opts)
     opts.dap = false
+    opts.components = {
+      "open_output",
+      direction = "vertical",
+      focus = true,
+    }
     opts.task_list = {
       bindings = {
         ["<C-h>"] = false,
