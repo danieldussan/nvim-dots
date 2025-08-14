@@ -92,7 +92,7 @@ return {
         local file = vim.fn.expand("%:p")
         return {
           cmd = { "bash" },
-          args = { "-c", "act && python3 " .. file },
+          args = { "-c", "source venv/bin/activate && python3 " .. file },
           components = {
             { "open_output", direction = "vertical", focus = true },
             "default",
