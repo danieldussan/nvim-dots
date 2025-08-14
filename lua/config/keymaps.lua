@@ -94,6 +94,13 @@ wk.add({
     icon = "󱏿 ",
   },
   {
+    "<leader>tS",
+    ":TailwindSortSelection<CR>",
+    desc = "Tailwind Sort (Selection)",
+    mode = "v",
+    icon = "󱏿 ",
+  },
+  {
     "<leader>tm",
     ":MCPHub<CR>",
     desc = "MCP Hub",
