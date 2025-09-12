@@ -12,7 +12,7 @@ return {
       bigfile = {
         enabled = true,
         notify = true,
-        size = 150 * 1024, -- 200 KB
+        size = 150 * 1024, -- 150 KB
       },
       bufdelete = { enabled = true },
       dashboard = {
