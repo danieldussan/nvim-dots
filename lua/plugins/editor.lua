@@ -127,4 +127,10 @@ return {
   {
     "https://github.com/lambdalisue/vim-suda",
   },
+  {
+    "smjonas/inc-rename.nvim",
+    opts = {
+      input_buffer_type = "snacks",
+    },
+  },
 }
