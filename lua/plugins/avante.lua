@@ -176,7 +176,7 @@ return {
         provider = "copilot",
         providers = {
           copilot = {
-            model = "claude-sonnet-4",
+            model = "GPT-4o",
           },
         },
         cursor_applying_provider = "copilot",

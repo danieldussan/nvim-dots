@@ -1,6 +1,6 @@
 return {
   "linux-cultist/venv-selector.nvim",
-  enabled = true,
+  enabled = false,
   opts = {
     name = "venv",
     notify_user_on_venv_activation = true,
