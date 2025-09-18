@@ -174,11 +174,6 @@ return {
         -- add any opts here
         -- for example
         provider = "copilot",
-        providers = {
-          copilot = {
-            model = "GPT-4o",
-          },
-        },
         cursor_applying_provider = "copilot",
         auto_suggestions_provider = "copilot",
         behaviour = {
