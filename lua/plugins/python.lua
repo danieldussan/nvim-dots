@@ -1,12 +1,11 @@
 return {
-  "linux-cultist/venv-selector.nvim",
-  enabled = false,
-  opts = {
-    name = "venv",
-    notify_user_on_venv_activation = true,
-    search_venv_managers = true,
-    search = true,
-    dap_enabled = true,
-    parents = 2,
+  {
+    "benomahony/uv.nvim",
+    lazy = true,
+    -- Optional filetype to lazy load when you open a python file
+    ft = { "python" },
+    opts = {
+      picker_integration = true,
+    },
   },
 }
