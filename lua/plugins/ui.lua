@@ -32,10 +32,6 @@ return {
     lazy = true,
   },
   {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    lazy = true,
-  },
-  {
     "folke/ts-comments.nvim",
     opts = {},
     event = "VeryLazy",

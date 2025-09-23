@@ -6,6 +6,7 @@ return {
     -- URL: https://github.com/mfussenegger/nvim-dap
     -- Description: Debug Adapter Protocol client implementation for Neovim.
     "mfussenegger/nvim-dap",
+    enabled = false,
     recommended = true, -- Recommended plugin
     lazy = true,
     desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
@@ -15,12 +16,14 @@ return {
       -- URL: https://github.com/rcarriga/nvim-dap-ui
       -- Description: A UI for nvim-dap.
       "rcarriga/nvim-dap-ui",
+      enabled = false,
 
       -- Plugin: nvim-dap-virtual-text
       -- URL: https://github.com/theHamsta/nvim-dap-virtual-text
       -- Description: Virtual text for the debugger.
       {
         "theHamsta/nvim-dap-virtual-text",
+        enabled = false,
         opts = {}, -- Default options
       },
     },

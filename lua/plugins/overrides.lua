@@ -9,6 +9,16 @@ return {
     "folke/trouble.nvim",
     -- Options to be merged with the parent specification
     optional = true,
+    opts = {
+      modes = {
+        symbols = {
+          desc = "document symbols",
+          mode = "lsp_document_symbols",
+          focus = false,
+          win = { position = "left" },
+        },
+      },
+    },
     specs = {
       "folke/snacks.nvim",
       opts = function(_, opts)
@@ -29,16 +39,5 @@ return {
         })
       end,
     },
-  },
-
-  -- Add symbols-outline.nvim plugin
-  {
-    -- Plugin: symbols-outline.nvim
-    -- URL: https://github.com/simrat39/symbols-outline.nvim
-    -- Description: A tree like view for symbols in Neovim using the Language Server Protocol.
-    "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline", -- Command to open the symbols outline
-    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } }, -- Keybinding to open the symbols outline
-    config = true, -- Use default configuration
   },
 }
