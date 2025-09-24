@@ -6,18 +6,6 @@ local colors = {
 }
 return {
   {
-    -- Plugin for enabling transparency
-    "xiyaowong/transparent.nvim",
-  },
-  {
-    "folke/tokyonight.nvim",
-    lazy = true,
-    -- priority = 1000,
-    opts = {
-      style = "night",
-    },
-  },
-  {
     "navarasu/onedark.nvim",
     opts = {
       style = "deep",

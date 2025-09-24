@@ -127,7 +127,7 @@ wk.add({
         hidden = false,
         unloaded = true,
         current = true,
-        sort_lastused = true,
+        sort_lastused = false,
         win = {
           input = {
             keys = {
