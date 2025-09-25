@@ -126,5 +126,6 @@ return {
   },
   {
     "https://github.com/lambdalisue/vim-suda",
+    event = "BufReadPre",
   },
 }

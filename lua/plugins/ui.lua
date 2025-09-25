@@ -124,6 +124,7 @@ return {
   -- Description: A collection of minimal, fast, and modular Lua plugins for Neovim.
   {
     "nvim-mini/mini.nvim",
+    lazy = true, -- Load this plugin lazily
     version = false, -- Use the latest version
     config = function()
       require("mini.animate").setup({

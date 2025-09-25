@@ -185,7 +185,6 @@ return {
           border = "rounded",
           draw = {
             columns = { { "kind_icon", "label", "label_description", gap = 1 }, { "kind", gap = 1 } },
-            treesitter = { "lsp" },
           },
         },
         documentation = {

@@ -7,4 +7,12 @@ return {
     -- "yetone/avante.nvim",
     -- enabled = false,
   },
+  {
+    "folke/tokyonight.nvim",
+    enabled = false,
+  },
+  {
+    "catppuccin/nvim",
+    enabled = false,
+  },
 }
