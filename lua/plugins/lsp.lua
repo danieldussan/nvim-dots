@@ -13,8 +13,15 @@ return {
             },
           },
         },
-        oxlint = {},
+        svelte_languaje_server = {},
         cssls = {},
+        -- python lsp
+        pyright = {
+          enabled = true,
+        },
+        ty = {
+          enabled = true,
+        },
         tailwindcss = {
           root_dir = function(...)
             return require("lspconfig.util").root_pattern(".git")(...)
