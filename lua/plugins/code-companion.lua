@@ -75,6 +75,13 @@ return {
                 "mcp",
                 "mcphub",
                 "filesystem",
+                "create_file",
+                "file_search",
+                "get_changed_files",
+                "grep_search",
+                "insert_edit_into_file",
+                "list_code_usages",
+                "read_file",
               },
             },
           },
@@ -143,13 +150,6 @@ return {
         window = {
           width = 0.35,
         },
-      },
-      diff = {
-        enabled = true,
-        close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
-        layout = "vertical", -- vertical|horizontal split for default provider
-        opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
-        provider = "default", -- default|mini_diff
       },
     },
     prompt_library = {
