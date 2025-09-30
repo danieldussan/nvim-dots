@@ -41,7 +41,7 @@ return {
       -- Merge custom sources with the existing ones from lazyvim
       -- NOTE: by default lazyvim already includes the lazydev source, so not adding it here again
       opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
-        default = { "lsp", "path", "snippets", "buffer", "avante" },
+        default = { "lsp", "path", "snippets", "buffer" },
         providers = {
           lsp = {
             name = "lsp",
@@ -88,13 +88,6 @@ return {
             module = "blink.cmp.sources.buffer",
             min_keyword_length = 2,
             score_offset = 15, -- the higher the number, the higher the priority
-          },
-          avante = {
-            module = "blink-cmp-avante",
-            name = "Avante",
-            opts = {
-              -- options for blink-cmp-avante
-            },
           },
           snippets = {
             name = "snippets",
