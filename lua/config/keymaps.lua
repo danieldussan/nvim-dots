@@ -1,6 +1,6 @@
 -- This file contains custom key mappings for Neovim.
 local wk = require("which-key")
-local code_companion_key_prefix = "<leader>z"
+local code_companion_key_prefix = "<leader>a"
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here

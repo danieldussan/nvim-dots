@@ -52,7 +52,26 @@ return {
                 return ""
               end
             end,
-            color = { fg = "#fabd2f", gui = "bold" }, -- TODO: don't directly rely on Gruvbox color here?
+            color = { fg = "#fabd2f", gui = "bold" },
+          },
+          {
+            function()
+              local filename = vim.fn.expand("%:t")
+              if filename == "" then
+                filename = "[No Name]"
+              end
+
+              local icon, icon_color = require("nvim-web-devicons").get_icon_color(filename)
+              local is_modified = vim.bo.modified
+              local mod_prefix = is_modified and "[+] " or ""
+              local file_color = is_modified and "#edce32" or "#afafaf"
+
+              -- Definir highlights dinámicos
+              vim.api.nvim_set_hl(0, "LualineFileIcon", { fg = icon_color or "#afafaf", bg = "NONE" })
+              vim.api.nvim_set_hl(0, "LualineFileName", { fg = file_color, bg = "NONE" })
+
+              return string.format("%%#LualineFileIcon#%s %%#LualineFileName#%s%s", icon or "", mod_prefix, filename)
+            end,
           },
         },
         lualine_x = {

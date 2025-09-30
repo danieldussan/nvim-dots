@@ -4,7 +4,7 @@ return {
   ---@module 'render-markdown'
   ---@type render.md.UserConfig
   opts = {
-    file_types = { "markdown", "Avante" },
+    file_types = { "markdown" },
     heading = {
       enabled = true,
       sign = true,
@@ -19,5 +19,5 @@ return {
       highlight = "render-markdownBullet",
     },
   },
-  ft = { "markdown", "Avante" },
+  ft = { "markdown" },
 }

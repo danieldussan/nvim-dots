@@ -25,13 +25,6 @@ return {
     },
   },
   {
-    -- Plugin: bufferline.nvim
-    -- URL: https://github.com/akinsho/bufferline.nvim
-    -- Description: A snazzy buffer line (with tabpage integration) for Neovim.
-    "akinsho/bufferline.nvim",
-    lazy = true,
-  },
-  {
     "folke/ts-comments.nvim",
     opts = {},
     event = "VeryLazy",
@@ -83,40 +76,6 @@ return {
       position = "right", -- Position the documentation view on the right
       width = 60, -- Set the width of the documentation view
     },
-  },
-
-  -- Plugin: incline.nvim
-  -- URL: https://github.com/b0o/incline.nvim
-  -- Description: A Neovim plugin for showing the current filename in a floating window.
-  {
-    "b0o/incline.nvim",
-    event = "BufReadPre", -- Load this plugin before reading a buffer
-    priority = 1200, -- Set the priority for loading this plugin
-    config = function()
-      require("incline").setup({
-        window = { margin = { vertical = 0, horizontal = 1 } }, -- Set the window margin
-        hide = {
-          cursorline = true, -- Hide the incline window when the cursorline is active
-        },
-        render = function(props)
-          local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-          local isModified = vim.bo[props.buf].modified -- Indicate if the file is modified
-          if isModified then
-            filename = "[+] " .. filename
-          end
-
-          local colorFilename = isModified and "#edce32" or "#f1f1f0"
-          local icon, color = require("nvim-web-devicons").get_icon_color(filename) -- Get the icon and color for the file
-
-          -- Return the rendered content
-          return {
-            { icon, guifg = color },
-            { " " },
-            { filename, guifg = colorFilename },
-          }
-        end,
-      })
-    end,
   },
 
   -- Plugin: mini.nvim
