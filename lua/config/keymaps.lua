@@ -262,45 +262,45 @@ wk.add({
 -- Register keymaps for Overseer.nvim
 
 wk.add({
-  { "<leader>o", desc = "Overseer", icon = "" },
+  { "<leader>p", desc = "Overseer", icon = "" },
   {
-    "<leader>ow",
+    "<leader>pw",
     "<cmd>OverseerToggle<cr>",
     desc = "Task list",
     icon = "",
   },
   {
-    "<leader>oo",
+    "<leader>po",
     "<cmd>OverseerRun<cr>",
     desc = "Run task",
     icon = "",
   },
   {
-    "<leader>oq",
+    "<leader>pq",
     "<cmd>OverseerQuickAction<cr>",
     desc = "Action recent task",
     icon = "",
   },
   {
-    "<leader>oi",
+    "<leader>pi",
     "<cmd>OverseerInfo<cr>",
     desc = "Overseer Info",
     icon = "",
   },
   {
-    "<leader>ob",
+    "<leader>pb",
     "<cmd>OverseerBuild<cr>",
     desc = "Task builder",
     icon = "",
   },
   {
-    "<leader>ot",
+    "<leader>pt",
     "<cmd>OverseerTaskAction<cr>",
     desc = "Task action",
     icon = "",
   },
   {
-    "<leader>oc",
+    "<leader>pc",
     "<cmd>OverseerClearCache<cr>",
     desc = "Clear cache",
     icon = "",
