@@ -20,6 +20,12 @@ local function codecompanion_current_model_name()
   return chat.settings.model
 end
 
+-- Mostrar cantidad de buffers abiertos
+local function buffer_count()
+  local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+  return " " .. #buffers
+end
+
 return {
   {
     "nvim-lualine/lualine.nvim",
@@ -72,6 +78,10 @@ return {
 
               return string.format("%%#LualineFileIcon#%s %%#LualineFileName#%s%s", icon or "", mod_prefix, filename)
             end,
+          },
+          {
+            buffer_count,
+            color = { fg = "#afafaf", gui = "bold" },
           },
         },
         lualine_x = {

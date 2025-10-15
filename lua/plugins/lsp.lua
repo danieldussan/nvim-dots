@@ -5,16 +5,9 @@ return {
       inlay_hints = { enabled = true },
       ---@type lspconfig.options
       servers = {
-        biome = {
-          settings = {
-            biome = {
-              format = true,
-              lint = true,
-            },
-          },
-        },
         svelte_languaje_server = {},
         cssls = {},
+        copilot = {},
         -- python lsp
         pyright = {
           enabled = true,

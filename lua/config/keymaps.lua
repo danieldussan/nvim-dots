@@ -80,7 +80,7 @@ end
 
 wk.add({
   { "<leader>t", desc = "Custom", icon = " " },
-  { "<leader>a", desc = "ai" },
+  { "<leader>z", desc = "AI Sidekick" },
   {
     "<leader>tc",
     ":Huefy<CR>",
