@@ -139,4 +139,10 @@ return {
     "https://github.com/lambdalisue/vim-suda",
     event = "BufReadPre",
   },
+  {
+    "smjonas/inc-rename.nvim",
+    opts = {
+      input_buffer_type = "snacks",
+    },
+  },
 }

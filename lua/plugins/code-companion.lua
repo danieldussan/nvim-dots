@@ -2,6 +2,7 @@ local prompts = require("lib.code-companion-prompts")
 
 return {
   "olimorris/codecompanion.nvim",
+  -- tag = "v17.33.0",
   event = "BufReadPre",
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -22,6 +23,7 @@ return {
     })
   end,
   opts = {
+    ignore_warnings = true,
     extensions = {
       mcphub = {
         callback = "mcphub.extensions.codecompanion",
@@ -33,7 +35,7 @@ return {
           show_result_in_chat = true, -- Show tool results directly in chat buffer
           format_tool = nil, -- function(tool_name:string, tool: CodeCompanion.Agent.Tool) : string Function to format tool names to show in the chat buffer
           -- MCP Resources
-          make_vars = true, -- Convert MCP resources to #variables for prompts
+          make_vars = false, -- Convert MCP resources to #variables for prompts
           -- MCP Prompts
           make_slash_commands = true, -- Add MCP prompts as /slash commands
         },
@@ -50,7 +52,7 @@ return {
         })
       end,
     },
-    strategies = {
+    interactions = {
       chat = {
         adapter = "copilot",
         roles = {
@@ -77,10 +79,10 @@ return {
                 "filesystem",
                 "create_file",
                 "file_search",
-                "get_changed_files",
+                "get_changed",
                 "grep_search",
-                "insert_edit_into_file",
-                "list_code_usages",
+                "insert_into_file",
+                "list_code",
                 "read_file",
               },
             },
@@ -105,7 +107,7 @@ return {
             },
           },
           ["buffer"] = {
-            callback = "strategies.chat.slash_commands.buffer",
+            callback = "interactions.slash_commands.buffer",
             description = "Insert open buffers",
             opts = {
               contains_code = true,
@@ -113,7 +115,7 @@ return {
             },
           },
           ["file"] = {
-            callback = "strategies.chat.slash_commands.file",
+            callback = "interactions.slash_commands.file",
             description = "Insert a file",
             opts = {
               contains_code = true,
@@ -122,22 +124,8 @@ return {
             },
           },
         },
-        inline = { adapter = "copilot" },
-        agent = { adapter = "copilot" },
       },
-      inline = {
-        adapter = "copilot",
-        keymaps = {
-          accept_change = {
-            modes = { n = "ga" },
-            description = "Accept the suggested change",
-          },
-          reject_change = {
-            modes = { n = "gr" },
-            description = "Reject the suggested change",
-          },
-        },
-      },
+      inline = { adapter = "copilot" },
       agent = { adapter = "copilot" },
     },
     default_adapter = "copilot",
@@ -147,32 +135,12 @@ return {
     },
     display = {
       chat = {
-        window = {
+        floating_window = {
           width = 0.35,
         },
       },
     },
     prompt_library = {
-      -- Custom the default prompt
-      ["Generate a Commit Message"] = {
-        prompts = {
-          {
-            role = "user",
-            content = function()
-              local branch_name = vim.fn.system("git branch --show-current"):gsub("%s+", "")
-              return "Write commit message with commitizen convention. Write clear, informative commit messages that explain the 'what' and 'why' behind changes, not just the 'how'."
-                .. "\n\nBranch: "
-                .. branch_name
-                .. "\n\n```\n"
-                .. vim.fn.system("git diff")
-                .. "\n```"
-            end,
-            opts = {
-              contains_code = true,
-            },
-          },
-        },
-      },
       ["Explain"] = {
         strategy = "chat",
         description = "Explain how code in a buffer works",
@@ -227,14 +195,13 @@ return {
           },
           {
             role = "user",
-            content = [[Please explain how the following code works.]],
+            content = [[Please explain how the following code.]],
           },
         },
       },
-      -- Add custom prompts
       ["Generate a Commit Message for Staged"] = {
         strategy = "chat",
-        description = "Generate a commit message for staged change",
+        description = "Generate a commit message for staged changes",
         opts = {
           short_name = "staged-commit",
           auto_submit = true,
@@ -245,7 +212,7 @@ return {
             role = "user",
             content = function()
               local branch_name = vim.fn.system("git branch --show-current"):gsub("%s+", "")
-              return "Write commit message for the change with commitizen convention. Write clear, informative commit messages that explain the 'what' and 'why' behind changes, not just the 'how'."
+              return "Write commit message for the changes with commitizen convention. Write clear, informative commit messages that explain the 'what' and 'why' behind changes, not just the 'how'."
                 .. "\n\nBranch: "
                 .. branch_name
                 .. "\n\n```\n"
@@ -274,7 +241,7 @@ return {
             content = function(context)
               local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
 
-              return "Please brief how it works and provide documentation in comment code for the following code. Also suggest to have better naming to improve readability.\n\n```"
+              return "Please brief how it works and provide documentation in comment code for the following code. Also suggest to better naming to improve readability.\n\n```"
                 .. context.filetype
                 .. "\n"
                 .. code
@@ -339,7 +306,7 @@ return {
           },
           {
             role = "user",
-            content = "Please review the following code and provide suggestions for improvement then refactor the following code to improve its clarity and readability.",
+            content = "Please review the following code and provide suggestions for improvement.",
           },
         },
       },
