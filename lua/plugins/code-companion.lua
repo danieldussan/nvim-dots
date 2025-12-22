@@ -1,5 +1,81 @@
 local prompts = require("lib.code-companion-prompts")
 
+-- Define commit prompts
+local commit_prompt = {
+  interaction = "chat",
+  description = "Generate a commit message for unstaged changes",
+  opts = {
+    alias = "commit",
+    auto_submit = true,
+    is_slash_cmd = true,
+  },
+  prompts = {
+    {
+      role = "user",
+      content = function()
+        local branch_name = vim.fn.system("git branch --show-current"):gsub("%s+", "")
+        -- Use io.popen with read all pattern, same as staged-commit
+        local handle = io.popen("git diff --no-ext-diff 2>&1")
+        local diff_result = ""
+        if handle ~= nil then
+          diff_result = handle:read("*a")
+          handle:close()
+        end
+        -- Trim and check if empty
+        diff_result = (diff_result or ""):gsub("^%s+", ""):gsub("%s+$", "")
+        if diff_result == "" then
+          diff_result = "No changes found"
+        end
+        return "Write commit message for the changes with commitizen convention. Write clear, informative commit messages that explain the 'what' and 'why' behind changes, not just the 'how'."
+          .. "\n\nBranch: "
+          .. branch_name
+          .. "\n\n```diff\n"
+          .. diff_result
+          .. "\n```"
+      end,
+      opts = {
+        contains_code = true,
+      },
+    },
+  },
+}
+
+local staged_commit_prompt = {
+  interaction = "chat",
+  description = "Generate a commit message for staged changes",
+  opts = {
+    alias = "staged-commit",
+    auto_submit = true,
+    is_slash_cmd = true,
+  },
+  prompts = {
+    {
+      role = "user",
+      content = function()
+        local branch_name = vim.fn.system("git branch --show-current"):gsub("%s+", "")
+        local handle = io.popen("git diff --staged --no-ext-diff")
+        local diff_result = ""
+        if handle ~= nil then
+          diff_result = handle:read("*a")
+          handle:close()
+        end
+        if diff_result == nil or diff_result == "" then
+          diff_result = "No staged changes found"
+        end
+        return "Write commit message for the changes with commitizen convention. Write clear, informative commit messages that explain the 'what' and 'why' behind changes, not just the 'how'."
+          .. "\n\nBranch: "
+          .. branch_name
+          .. "\n\n```diff\n"
+          .. diff_result
+          .. "\n```"
+      end,
+      opts = {
+        contains_code = true,
+      },
+    },
+  },
+}
+
 return {
   "olimorris/codecompanion.nvim",
   -- tag = "v17.33.0",
@@ -142,12 +218,12 @@ return {
     },
     prompt_library = {
       ["Explain"] = {
-        strategy = "chat",
+        interaction = "chat",
         description = "Explain how code in a buffer works",
         opts = {
           default_prompt = true,
           modes = { "v" },
-          short_name = "explain",
+          alias = "explain",
           auto_submit = true,
           user_prompt = false,
           stop_context_insertion = true,
@@ -178,10 +254,10 @@ return {
         },
       },
       ["Explain Code"] = {
-        strategy = "chat",
+        interaction = "chat",
         description = "Explain how code works",
         opts = {
-          short_name = "explain-code",
+          alias = "explain-code",
           auto_submit = false,
           is_slash_cmd = true,
         },
@@ -199,38 +275,14 @@ return {
           },
         },
       },
-      ["Generate a Commit Message for Staged"] = {
-        strategy = "chat",
-        description = "Generate a commit message for staged changes",
-        opts = {
-          short_name = "staged-commit",
-          auto_submit = true,
-          is_slash_cmd = true,
-        },
-        prompts = {
-          {
-            role = "user",
-            content = function()
-              local branch_name = vim.fn.system("git branch --show-current"):gsub("%s+", "")
-              return "Write commit message for the changes with commitizen convention. Write clear, informative commit messages that explain the 'what' and 'why' behind changes, not just the 'how'."
-                .. "\n\nBranch: "
-                .. branch_name
-                .. "\n\n```\n"
-                .. vim.fn.system("git diff --staged")
-                .. "\n```"
-            end,
-            opts = {
-              contains_code = true,
-            },
-          },
-        },
-      },
+      ["commit"] = commit_prompt,
+      ["staged-commit"] = staged_commit_prompt,
       ["Document"] = {
-        strategy = "chat",
+        interaction = "chat",
         description = "Write documentation for code.",
         opts = {
           modes = { "v" },
-          short_name = "doc",
+          alias = "doc",
           auto_submit = true,
           user_prompt = false,
           stop_context_insertion = true,
@@ -254,11 +306,11 @@ return {
         },
       },
       ["Review"] = {
-        strategy = "chat",
+        interaction = "chat",
         description = "Review the provided code snippet.",
         opts = {
           modes = { "v" },
-          short_name = "review",
+          alias = "review",
           auto_submit = true,
           user_prompt = false,
           stop_context_insertion = true,
@@ -289,10 +341,10 @@ return {
         },
       },
       ["Review Code"] = {
-        strategy = "chat",
+        interaction = "chat",
         description = "Review code and provide suggestions for improvement.",
         opts = {
-          short_name = "review-code",
+          alias = "review-code",
           auto_submit = false,
           is_slash_cmd = true,
         },
@@ -311,11 +363,11 @@ return {
         },
       },
       ["Refactor"] = {
-        strategy = "inline",
+        interaction = "inline",
         description = "Refactor the provided code snippet.",
         opts = {
           modes = { "v" },
-          short_name = "refactor",
+          alias = "refactor",
           auto_submit = true,
           user_prompt = false,
           stop_context_insertion = true,

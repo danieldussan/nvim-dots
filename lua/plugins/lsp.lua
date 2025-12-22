@@ -8,6 +8,7 @@ return {
         svelte_languaje_server = {},
         cssls = {},
         copilot = {},
+        qmlls = {},
         -- python lsp
         pyright = {
           enabled = true,
