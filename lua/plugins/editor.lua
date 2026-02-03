@@ -2,39 +2,13 @@
 
 return {
   {
-    -- Plugin: emmet-vim
-    -- URL: https://github.com/mattn/emmet-vim
-    -- Description: Provides support for expanding Emmet abbreviations in Vim.
-    "mattn/emmet-vim",
-    enabled = false, -- Outdated
-    ft = { "html", "css", "javascript", "javascriptreact", "typescriptreact", "astro" },
-    -- config = function()
-    --   vim.keymap.set("i", "<C-,>", "<Plug>(emmet-expand-abbr)", { noremap = false, silent = true })
-    --   vim.keymap.set("n", "<C-,>", "i<Plug>(emmet-expand-abbr)", { noremap = false, silent = true })
-    -- end,
-    keys = {
-      {
-        "<C-,>",
-        "<Plug>(emmet-expand-abbr)",
-        mode = { "i" },
-        desc = "Expand Emmet abbreviation",
-      },
-      {
-        "<C-,>",
-        "i<Plug>(emmet-expand-abbr)",
-        mode = { "n" },
-        desc = "Expand Emmet abbreviation",
-      },
-    },
-  },
-  {
     -- Plugin: nvim-emmet
     -- URL: https://github.com/olrtg/nvim-emmet
     -- Description: Provides support for expanding Emmet abbreviations in Nvim.
     "olrtg/nvim-emmet",
-    ft = { "html", "css", "javascript", "javascriptreact", "typescriptreact", "astro" },
+    ft = { "html", "css", "javascript", "javascriptreact", "typescriptreact", "astro", "htmlangular" },
     config = function()
-      vim.keymap.set({ "n", "v" }, "<C-,>", require("nvim-emmet").wrap_with_abbreviation)
+      vim.keymap.set({ "n", "v" }, "<M-,>", require("nvim-emmet").wrap_with_abbreviation)
     end,
   },
   {

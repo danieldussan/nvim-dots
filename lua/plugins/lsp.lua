@@ -5,7 +5,10 @@ return {
       inlay_hints = { enabled = true },
       ---@type lspconfig.options
       servers = {
-        svelte_languaje_server = {},
+        svelte_language_server = {},
+        ktlint = {},
+        angularls = {},
+        emmet_language_server = {},
         cssls = {},
         copilot = {},
         qmlls = {},

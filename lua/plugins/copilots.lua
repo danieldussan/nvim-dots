@@ -43,7 +43,7 @@ return {
     event = "BufReadPost",
     opts = {
       nes = {
-        enabled = false,
+        enabled = true,
         trigger = {
           events = { "TextChangedI", "CursorMovedI", "User SidekickNesDone" },
         },
